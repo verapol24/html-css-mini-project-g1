@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="./tailwind.config.js"></script>
 </head>
 <body>
     <!-- Im -->
@@ -11,9 +15,81 @@
     <!-- kao -->
 
     <!-- win -->
+    <section class="w-full bg-white px-4 py-12 font-rubik desktop:px-0 desktop:py-20">
+      <div class="mx-auto w-full desktop:max-w-content">
+        <div class="mb-8 text-center desktop:mb-12">
+          <p class="mb-2 text-sm font-medium text-muted desktop:text-base">Price Plan</p>
+          <h2 class="text-[28px] font-bold leading-tight text-navy desktop:text-[40px]">
+            No Extra Charges! Choose<br />Your Plan.
+          </h2>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[560px] border-collapse desktop:min-w-0">
+            <thead>
+              <tr>
+                <th class="win-cell w-[28%] p-4 desktop:w-[270px] desktop:p-8"></th>
+                <th class="win-plan w-[24%] desktop:w-[300px]">
+                  <span class="win-price text-regular">$2000</span>
+                  <span class="win-name">Regular</span>
+                </th>
+                <th class="win-plan w-[24%] desktop:w-[300px]">
+                  <span class="win-price text-premium">$3000</span>
+                  <span class="win-name">Premium</span>
+                </th>
+                <th class="win-plan w-[24%] desktop:w-[300px]">
+                  <span class="win-price text-corporate">$5000</span>
+                  <span class="win-name">Corporate</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="win-label">Full Access</td>
+                <td class="win-cell py-4"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-4"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-4"><span class="win-icon win-check">&#10003;</span></td>
+              </tr>
+              <tr>
+                <td class="win-label">Multiple User</td>
+                <td class="win-cell py-4"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-4"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-4"><span class="win-icon win-check">&#10003;</span></td>
+              </tr>
+              <tr>
+                <td class="win-label">Refund</td>
+                <td class="win-cell py-4"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-4"><span class="win-icon win-check">&#10003;</span></td>
+                <td class="win-cell py-4"><span class="win-icon win-check">&#10003;</span></td>
+              </tr>
+              <tr>
+                <td class="win-label">24/7 Support</td>
+                <td class="win-cell py-4"><span class="win-icon win-check">&#10003;</span></td>
+                <td class="win-cell py-4"><span class="win-icon win-check">&#10003;</span></td>
+                <td class="win-cell py-4"><span class="win-icon win-check">&#10003;</span></td>
+              </tr>
+              <tr>
+                <td class="win-cell p-4 desktop:p-8"></td>
+                <td class="win-cta">
+                  <a href="#" class="win-btn bg-regular">Choose Plan</a>
+                  <p class="win-trial">Get your 30 days free trial</p>
+                </td>
+                <td class="win-cta">
+                  <a href="#" class="win-btn bg-premium">Choose Plan</a>
+                  <p class="win-trial">Get your 30 days free trial</p>
+                </td>
+                <td class="win-cta">
+                  <a href="#" class="win-btn bg-corporate">Choose Plan</a>
+                  <p class="win-trial">Get your 30 days free trial</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
     <!-- nueng -->
-      
 
 </body>
 </html>
