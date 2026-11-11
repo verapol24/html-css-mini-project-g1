@@ -1,13 +1,286 @@
 <!doctype html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="m-0 bg-white font-sans">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agencio | Creative Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --font-rubik: "Rubik", sans-serif;
+        --color-brand: #1675f9;
+        --color-ink: #100e5a;
+        --color-muted: #8583aa;
+        --color-soft: #f4f7fc;
+        --color-sun: #ffd963;
+        --color-mint: #00b897;
+      }
+      /* container + responsive side padding used in every section */
+      @utility wrap {
+        @apply mx-auto max-w-[1440px] px-4 md:px-[clamp(24px,11.46vw,165px)];
+      }
+    </style>
+  </head>
+  <body class="font-rubik text-ink antialiased">
     <!-- Im -->
+    <header
+      id="home"
+      class="relative isolate min-h-[844px] overflow-hidden md:min-h-[956px]"
+    >
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 -z-10 bg-soft [clip-path:polygon(0_0,100%_0,100%_100%,0_90%)]"
+      ></div>
 
+      <nav
+        aria-label="Main navigation"
+        class="wrap flex h-[59px] items-center justify-between border-b border-[#e7eaf1] md:h-[69px] md:border-0 md:pt-8"
+      >
+        <a href="#home" class="flex items-center gap-2" aria-label="Agencio home">
+          <svg
+            aria-hidden="true"
+            class="h-7 w-7 md:h-11 md:w-[52px]"
+            viewBox="0 0 52 44"
+            fill="none"
+          >
+            <path d="M5 22 32 3a8 8 0 0 1 12 7v24a8 8 0 0 1-12 7L5 22Z" fill="#1675F9" />
+            <path d="m13 22 22-16a5 5 0 0 1 8 4v24a5 5 0 0 1-8 4L13 22Z" fill="#AFCFFF" />
+            <path d="m20 22 16-12v24L20 22Z" fill="#fff" />
+          </svg>
+          <span class="text-2xl font-medium leading-none md:text-4xl">Agencio</span>
+        </a>
+
+        <div
+          class="hidden items-center gap-12 md:flex *:transition-colors [&>a:not(:last-child)]:hover:text-brand"
+        >
+          <a href="#home">Home</a>
+          <a href="#services">Category</a>
+          <a href="#services">Service</a>
+          <a href="#services">Blog</a>
+          <a href="#services">Contact</a>
+          <a
+            href="#services"
+            class="rounded-md bg-sun px-6 py-5 hover:bg-[#ffcf3d]"
+          >
+            Create Account
+          </a>
+        </div>
+
+        <button
+          type="button"
+          aria-label="Open menu"
+          class="grid size-10 place-items-center md:hidden"
+        >
+          <svg aria-hidden="true" class="size-6" viewBox="0 0 24 24" fill="none">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </button>
+      </nav>
+
+      <div
+        class="wrap grid grid-cols-1 pt-12 md:grid-cols-2 md:gap-8 md:pt-[82px] lg:grid-cols-[1fr_445px] lg:gap-[100px]"
+      >
+        <div class="md:pt-[68px]">
+          <p class="flex items-center gap-3 text-lg text-brand">
+            CREATIVE AGENCY
+            <span aria-hidden="true" class="mt-1 h-0.5 w-9 bg-brand"></span>
+          </p>
+          <h1
+            class="mt-4 max-w-[480px] text-[32px] leading-[1.25] font-semibold md:text-[48px] md:leading-[1.16]"
+          >
+            We are here to give the best service
+          </h1>
+          <p
+            class="mt-7 max-w-[560px] text-sm leading-7 text-muted md:text-lg md:leading-[30px]"
+          >
+            It's crafted with the latest trend of design &amp; coded with all
+            modern approaches. It's a robust &amp; multi-dimensional usable
+            template.
+          </p>
+          <div class="mt-6 flex items-center gap-8">
+            <a
+              href="#services"
+              class="grid h-[60px] w-40 place-items-center rounded-md bg-brand font-medium text-white transition-colors hover:bg-[#0862e5]"
+            >
+              Get Started
+            </a>
+            <button type="button" class="flex items-center gap-2 text-sm md:text-base">
+              <span
+                class="grid size-6 place-items-center rounded-full border border-brand text-brand"
+              >
+                <svg aria-hidden="true" class="ml-0.5 size-3" viewBox="0 0 12 12" fill="currentColor">
+                  <path d="M3 1.5 10 6l-7 4.5v-9Z" />
+                </svg>
+              </span>
+              Watch Video
+            </button>
+          </div>
+        </div>
+
+        <div class="relative mt-10 h-[360px] md:mt-0 md:h-[520px] lg:h-[610px]">
+          <div
+            aria-hidden="true"
+            class="absolute top-0 right-[30px] h-[360px] w-[263px] bg-brand [clip-path:polygon(0_0,84%_0,100%_10%,100%_100%,0_90%)] md:right-0 md:h-full md:w-full md:rounded-tr-[48px] md:rounded-br-lg md:[clip-path:polygon(0_0,89%_0,100%_8%,100%_100%,0_92%)]"
+          ></div>
+          <img
+            src="assets/hero-person.png"
+            alt="Creative agency team member"
+            class="absolute bottom-0 left-[87px] z-10 h-[326px] w-[208px] object-contain object-bottom md:left-1/2 md:h-[480px] md:w-[300px] md:-translate-x-1/2 lg:left-[38px] lg:h-[577px] lg:w-[369px] lg:translate-x-0"
+          />
+
+          <!-- Realtime users card -->
+          <div
+            class="absolute top-7 right-[-16px] z-20 w-[88px] rounded-xl bg-white px-2.5 py-5 shadow-[0_12px_35px_rgba(27,42,99,0.08)] md:top-12 md:right-[-18px] md:w-[130px] md:px-4 lg:right-[-79px] lg:w-[150px]"
+          >
+            <p class="whitespace-nowrap text-[8px] text-[#9998b9] md:text-[10px] lg:text-xs">
+              Realtime Users
+            </p>
+            <p class="mt-1 text-sm font-medium md:text-xl lg:text-[32px] lg:leading-10">553</p>
+            <p class="mt-1 flex items-center gap-1 text-[8px] text-mint md:text-[10px] lg:text-sm">
+              +21.01%
+              <svg aria-hidden="true" class="size-3" viewBox="0 0 16 16" fill="none">
+                <path d="m3 11 4-4 3 3 4-5M10 5h4v4" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+            </p>
+            <svg
+              aria-hidden="true"
+              class="mt-3 h-8 w-full md:mt-5 md:h-10"
+              viewBox="0 0 120 40"
+              fill="none"
+            >
+              <path
+                d="m2 34 14-17 12 12 15-15 13 9 13-19 13 25 12-15 13 12 11 5"
+                stroke="#1675F9"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+
+          <!-- Users card -->
+          <div
+            class="absolute bottom-[-10px] left-0 z-20 w-[108px] rounded-xl bg-white p-3 shadow-[0_12px_35px_rgba(27,42,99,0.08)] md:bottom-[-18px] md:left-[-28px] md:w-[160px] md:p-4 lg:bottom-[-20px] lg:left-[-85px] lg:w-[180px] lg:p-6
+                   [&_img]:size-[22px] [&_img]:rounded-full md:[&_img]:size-8 lg:[&_img]:size-[38px]
+                   [&_strong]:block [&_strong]:text-[8px] [&_strong]:font-medium md:[&_strong]:text-[10px] lg:[&_strong]:text-xs
+                   [&_small]:block [&_small]:text-[7px] [&_small]:text-muted md:[&_small]:text-[9px]"
+          >
+            <h2 class="text-[10px] font-medium md:text-sm lg:text-base">Users</h2>
+            <ul class="mt-3 space-y-2 md:mt-4 md:space-y-3">
+              <li class="flex items-center gap-2.5">
+                <img src="assets/avatar-michelle.png" alt="" />
+                <div><strong>Michel</strong><small>Simplify</small></div>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <img src="assets/avatar-clark.png" alt="" />
+                <div><strong>Clark</strong><small>Simplify</small></div>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <img src="assets/avatar-gereds.png" alt="" />
+                <div><strong>Gereds</strong><small>Simplify</small></div>
+              </li>
+            </ul>
+            <button
+              type="button"
+              class="mt-3 h-6 w-full rounded-md bg-mint text-[8px] font-medium text-white md:mt-4 md:h-8 md:text-[10px]"
+            >
+              Message
+            </button>
+          </div>
+
+          <!-- Chat bubble -->
+          <div
+            aria-hidden="true"
+            class="absolute top-[194px] left-[78px] z-20 grid size-10 place-items-center rounded-[40%_60%_50%_50%] bg-[#ffda66] md:top-[300px] md:left-[40px] md:size-14 lg:top-[330px] lg:left-[48px] lg:size-16"
+          >
+            <svg class="size-5 text-white md:size-6" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H12l-4.5 4v-4h-1A2.5 2.5 0 0 1 4 13.5v-8Z"
+                stroke="currentColor"
+                stroke-width="1.7"
+              />
+              <path d="M8 8h8M8 11h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section
+      id="services"
+      aria-labelledby="services-title"
+      class="relative min-h-[1341px] bg-white px-4 pt-12 pb-20 md:min-h-[626px] md:px-0"
+    >
+      <!-- dotted decoration -->
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute top-[210px] right-0 hidden h-[170px] w-[90px] bg-[radial-gradient(#dce7fb_1.5px,transparent_1.5px)] bg-size-[14px_14px] bg-position-[-5px_-5px] lg:block"
+      ></div>
+
+      <div class="wrap relative">
+        <h2
+          id="services-title"
+          class="max-w-[360px] text-[32px] leading-[1.35] font-semibold md:text-[40px] md:leading-[1.2]"
+        >
+          Lets Check Our<br />
+          Services
+          <span aria-hidden="true" class="inline-block h-[3px] w-14 bg-brand align-middle"></span>
+        </h2>
+
+        <div
+          class="mt-8 grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-5 lg:grid-cols-4 lg:gap-0
+                 *:min-h-[250px] *:rounded-xl *:p-8 lg:*:p-7
+                 [&_.icon]:grid [&_.icon]:size-14 [&_.icon]:place-items-center [&_.icon]:rounded-[40%_60%_55%_45%]
+                 [&_svg]:size-6
+                 [&_h3]:mt-7 [&_h3]:text-xl [&_h3]:leading-6 [&_h3]:font-medium
+                 [&_p]:mt-3 [&_p]:leading-7 [&_p]:text-muted"
+        >
+          <article class="bg-[#f8f9ff] lg:bg-transparent">
+            <div class="icon bg-[#caefc4] text-[#54c643]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 4v15h15M8 15l4-4 3 2 4-5M16 8h3v3" />
+              </svg>
+            </div>
+            <h3>Increase conversion</h3>
+            <p>It's crafted with the latest of design &amp; coded with all trendy &amp; modern approaches.</p>
+          </article>
+
+          <article>
+            <div class="icon bg-[#f0c4fb] text-[#c84be5]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 5h16v11H9l-5 4V5Zm3 3v2h10V8H7Zm0 4v2h7v-2H7Z" />
+              </svg>
+            </div>
+            <h3>Discussion for idea</h3>
+            <p>It's crafted with the latest of design &amp; coded with all trendy &amp; modern approaches.</p>
+          </article>
+
+          <article class="lg:bg-[#f8f9ff]">
+            <div class="icon bg-[#c4d5ff] text-[#4580ef]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11 3a9 9 0 1 0 9 9h-9V3Zm3 .5V9h5.5A9 9 0 0 0 14 3.5Z" />
+              </svg>
+            </div>
+            <h3>Product analytics</h3>
+            <p>It's crafted with the latest of design &amp; coded with all trendy &amp; modern approaches.</p>
+          </article>
+
+          <article>
+            <div class="icon bg-[#ffe38a] text-[#e2a900]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 3h6v2h-1v5l5 8a2 2 0 0 1-1.7 3H6.7A2 2 0 0 1 5 18l5-8V5H9V3Zm1.8 9-3.5 6h9.4l-3.5-6h-2.4Z" />
+              </svg>
+            </div>
+            <h3>Perfect testing</h3>
+            <p>It's crafted with the latest of design &amp; coded with all trendy &amp; modern approaches.</p>
+          </article>
+        </div>
+      </div>
+    </section>
     <!-- kao -->
     <section
         class="relative isolate mx-auto grid min-h-[680px] w-full grid-cols-1 items-center gap-[38px] px-8 py-[76px] text-[#111052] before:absolute before:inset-y-[5%] before:left-4 before:right-4 before:-z-10 before:bg-[#f5f7fc] before:[clip-path:polygon(0_0,100%_5%,100%_100%,0_95%)] before:content-[''] md:mx-0 md:ml-[clamp(24px,11.6vw,170px)] md:min-h-[680px] md:w-[calc(100%-clamp(24px,11.6vw,170px))] md:max-w-[1000px] md:grid-cols-[minmax(280px,37%)_1fr] md:gap-[7.5%] md:px-0 md:py-16 md:before:inset-y-[9%] md:before:left-0 md:before:right-[-8vw] md:before:[clip-path:polygon(0_0,100%_19%,100%_100%,0_81%)]"
@@ -63,7 +336,5 @@
     <!-- win -->
 
     <!-- nueng -->
-      
-
-</body>
+  </body>
 </html>
