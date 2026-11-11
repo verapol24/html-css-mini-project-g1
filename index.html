@@ -1,13 +1,694 @@
 <!doctype html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body>
-<h1 class="text-3xl font-bold underline bg-red-500">
-Hello world!
-</h1>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agencio | Creative Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!--
+      How to read the classes in this file:
+        - Classes without a prefix  = mobile (375px design)
+        - md:  = tablet and up (768px+)
+        - lg:  = desktop (1024px+)
+        - desktop: = same as lg: (used only in Price Plan)
+      Long class lists are split into lines: one line per screen size.
+    -->
+    <style type="text/tailwindcss">
+      @theme {
+        /* ---------- Font ---------- */
+        --font-rubik: "Rubik", sans-serif;
+
+        /* ---------- Colors ---------- */
+        --color-ink: #100e5a;           /* default text */
+        --color-navy: #0b0757;          /* headings */
+        --color-muted: #8480ae;         /* body text */
+        --color-brand: #1675f9;         /* blue (hero, services) */
+        --color-primary: #1374f6;       /* blue: buttons, icons */
+        --color-primary-dark: #0b5fd0;  /* blue on hover */
+        --color-soft: #f4f7fc;          /* hero background */
+        --color-light: #f4f7fc;         /* newsletter background */
+        --color-sun: #ffd963;           /* "Create Account" button */
+        --color-mint: #00b897;          /* "Message" button */
+        --color-gold: #fdc46e;          /* name: Jack Smith */
+        --color-badge: #64d5fd;         /* like badge */
+        --color-regular: #fdc46e;       /* price plan: Regular */
+        --color-premium: #00b894;       /* price plan: Premium */
+        --color-corporate: #1374f6;     /* price plan: Corporate */
+
+        /* ---------- Sizes ---------- */
+        --breakpoint-desktop: 64rem;    /* desktop: prefix = 1024px */
+        --container-content: 1110px;    /* max-w-content */
+      }
+
+      /* Container + side padding used by Header and Services */
+      @utility wrap {
+        @apply mx-auto max-w-[1440px] px-4 md:px-[clamp(24px,11.46vw,165px)];
+      }
+
+      /* ---------- Price Plan table ---------- */
+      /* (moved from tailwind.config.js — Tailwind v4 CDN does not read that file) */
+      @utility win-cell  { @apply border border-navy/8 text-center; }
+      @utility win-label { @apply border border-navy/8 py-2 pr-2 pl-[13px] text-left text-sm leading-7 font-normal text-muted desktop:py-[22px] desktop:pl-[26px] desktop:text-xl; }
+      @utility win-plan  { @apply border border-navy/8 py-5 text-center desktop:py-[42px]; }
+      @utility win-price { @apply block text-2xl font-medium desktop:text-4xl; }
+      @utility win-name  { @apply mt-1.5 block text-base font-normal text-muted desktop:mt-2 desktop:text-xl; }
+      @utility win-icon  { @apply inline-grid size-6 place-items-center text-xl leading-none; }
+      @utility win-check { @apply text-primary; }
+      @utility win-cross { @apply text-muted; }
+      @utility win-cta   { @apply pt-4 text-center desktop:border desktop:border-navy/8 desktop:py-6; }
+      @utility win-btn   { @apply inline-grid h-10 w-[85px] place-items-center rounded-[5px] text-xs font-medium text-white desktop:h-12 desktop:w-[120px] desktop:text-sm; }
+      @utility win-trial { @apply mt-3 hidden text-sm leading-7 text-muted desktop:block; }
+    </style>
+  </head>
+
+ <body class="font-rubik text-ink antialiased">
+    <!-- ======================================================
+         1. HEADER + HERO  (Im)
+         ====================================================== -->
+    <header
+      id="home"
+      class="relative isolate min-h-[844px] overflow-hidden md:min-h-[956px]"
+    >
+      <!-- light background with slanted bottom edge -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 -z-10 bg-soft [clip-path:polygon(0_0,100%_0,100%_100%,0_90%)]"
+      ></div>
+
+      <!-- ---------- Navigation ---------- -->
+      <nav
+        aria-label="Main navigation"
+        class="wrap flex h-[59px] items-center justify-between border-b border-[#e7eaf1]
+               md:h-[69px] md:border-0 md:pt-8"
+      >
+        <!-- logo -->
+        <a href="#home" class="flex items-center gap-2" aria-label="Agencio home">
+          <svg aria-hidden="true" class="h-7 w-7 md:h-11 md:w-[52px]" viewBox="0 0 52 44" fill="none">
+            <path d="M5 22 32 3a8 8 0 0 1 12 7v24a8 8 0 0 1-12 7L5 22Z" fill="#1675F9" />
+            <path d="m13 22 22-16a5 5 0 0 1 8 4v24a5 5 0 0 1-8 4L13 22Z" fill="#AFCFFF" />
+            <path d="m20 22 16-12v24L20 22Z" fill="#fff" />
+          </svg>
+          <span class="text-2xl font-medium leading-none md:text-4xl">Agencio</span>
+        </a>
+
+        <!-- menu links (tablet/desktop only) -->
+        <div class="hidden items-center gap-12 md:flex *:transition-colors [&>a:not(:last-child)]:rounded-md [&>a:not(:last-child)]:bg-[#f5f7fb] [&>a:not(:last-child)]:px-4 [&>a:not(:last-child)]:py-5 [&>a:not(:last-child)]:hover:bg-sun [&>a:not(:last-child)]:hover:text-brand">
+          <a href="#home">Home</a>
+          <a href="#services">Category</a>
+          <a href="#services">Service</a>
+          <a href="#services">Blog</a>
+          <a href="#services">Contact</a>
+          <a href="#services" class="rounded-md bg-[#f5f7fb] px-6 py-5 transition-colors hover:bg-sun">Create Account</a>
+        </div>
+
+        <!-- mobile dropdown menu -->
+        <details class="relative md:hidden">
+          <summary aria-label="Toggle navigation menu" class="grid size-10 cursor-pointer list-none place-items-center">
+            <svg aria-hidden="true" class="size-6" viewBox="0 0 24 24" fill="none">
+              <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </summary>
+          <div class="absolute right-0 top-full z-20 mt-2 flex w-56 flex-col gap-1 rounded-lg border border-[#e7eaf1] bg-white p-2 shadow-lg">
+            <a href="#home" class="rounded-md bg-[#f5f7fb] px-4 py-3 hover:bg-sun">Home</a>
+            <a href="#services" class="rounded-md bg-[#f5f7fb] px-4 py-3 hover:bg-sun">Category</a>
+            <a href="#services" class="rounded-md bg-[#f5f7fb] px-4 py-3 hover:bg-sun">Service</a>
+            <a href="#services" class="rounded-md bg-[#f5f7fb] px-4 py-3 hover:bg-sun">Blog</a>
+            <a href="#services" class="rounded-md bg-[#f5f7fb] px-4 py-3 hover:bg-sun">Contact</a>
+            <a href="#services" class="rounded-md bg-[#f5f7fb] px-4 py-3 hover:bg-sun">Create Account</a>
+          </div>
+        </details>
+      </nav>
+
+      <!-- ---------- Hero ---------- -->
+      <div
+        class="wrap grid grid-cols-1 pt-12
+               md:grid-cols-2 md:gap-8 md:pt-[82px]
+               lg:grid-cols-[1fr_445px] lg:gap-[100px]"
+      >
+        <!-- left: text -->
+        <div class="md:pt-[68px]">
+          <p class="flex items-center gap-3 text-lg text-brand">
+            CREATIVE AGENCY
+            <span aria-hidden="true" class="mt-1 h-0.5 w-[18px] bg-brand md:w-9"></span>
+          </p>
+
+          <h1
+            class="mt-4 max-w-[480px] text-4xl leading-[43px] font-medium
+                   md:text-[48px] md:leading-[1.16] md:font-semibold"
+          >
+            We are here to give the best service
+          </h1>
+
+          <p
+            class="mt-6 max-w-[560px] text-sm leading-6 text-muted
+                   md:mt-7 md:text-lg md:leading-[30px]"
+          >
+            It's crafted with the latest trend of design &amp; coded with all
+            modern approaches. It's a robust &amp; multi-dimensional usable
+            template.
+          </p>
+
+          <div class="mt-6 flex items-center gap-8">
+            <a
+              href="#services"
+              class="grid h-[60px] w-40 place-items-center rounded-md bg-brand font-medium text-white transition-colors hover:bg-[#0862e5]"
+            >
+              Get Started
+            </a>
+            <button type="button" class="flex items-center gap-2 text-sm md:text-base">
+              <span class="grid size-6 place-items-center rounded-full border border-brand text-brand">
+                <svg aria-hidden="true" class="ml-0.5 size-3" viewBox="0 0 12 12" fill="currentColor">
+                  <path d="M3 1.5 10 6l-7 4.5v-9Z" />
+                </svg>
+              </span>
+              Watch Video
+            </button>
+          </div>
+        </div>
+
+        <!-- right: person image + floating cards -->
+        <div class="relative mt-10 h-[360px] md:mt-0 md:h-[520px] lg:h-[610px]">
+          <!-- blue shape behind the person -->
+          <div
+            aria-hidden="true"
+            class="absolute top-0 right-[30px] h-[360px] w-[263px] bg-brand [clip-path:polygon(0_0,84%_0,100%_10%,100%_100%,0_90%)]
+                   md:right-0 md:h-full md:w-full md:rounded-tr-[48px] md:rounded-br-lg md:[clip-path:polygon(0_0,89%_0,100%_8%,100%_100%,0_92%)]"
+          ></div>
+
+          <img
+            src="assets/hero-person.png"
+            alt="Creative agency team member"
+            class="absolute bottom-0 left-[87px] z-10 h-[326px] w-[208px] object-contain object-bottom
+                   md:left-1/2 md:h-[480px] md:w-[300px] md:-translate-x-1/2
+                   lg:left-[38px] lg:h-[577px] lg:w-[369px] lg:translate-x-0"
+          />
+
+          <!-- card: Realtime users -->
+          <div
+            class="absolute top-7 right-[-16px] z-20 w-[88px] rounded-xl bg-white px-2.5 py-5 shadow-[0_12px_35px_rgba(27,42,99,0.08)]
+                   md:top-12 md:right-[-18px] md:w-[130px] md:px-4
+                   lg:right-[-79px] lg:w-[150px]"
+          >
+            <p class="whitespace-nowrap text-[8px] text-[#9998b9] md:text-[10px] lg:text-xs">Realtime Users</p>
+            <p class="mt-1 text-sm font-medium md:text-xl lg:text-[32px] lg:leading-10">553</p>
+            <p class="mt-1 flex items-center gap-1 text-[8px] text-mint md:text-[10px] lg:text-sm">
+              +21.01%
+              <svg aria-hidden="true" class="size-3" viewBox="0 0 16 16" fill="none">
+                <path d="m3 11 4-4 3 3 4-5M10 5h4v4" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+            </p>
+            <svg aria-hidden="true" class="mt-3 h-8 w-full md:mt-5 md:h-10" viewBox="0 0 120 40" fill="none">
+              <path d="m2 34 14-17 12 12 15-15 13 9 13-19 13 25 12-15 13 12 11 5" stroke="#1675F9" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <!-- card: Users -->
+          <div
+            class="absolute bottom-[-10px] left-0 z-20 w-[108px] rounded-xl bg-white p-3 shadow-[0_12px_35px_rgba(27,42,99,0.08)]
+                   md:bottom-[-18px] md:left-[-28px] md:w-[160px] md:p-4
+                   lg:bottom-[-20px] lg:left-[-85px] lg:w-[180px] lg:p-6
+                   [&_img]:size-[22px] [&_img]:rounded-full md:[&_img]:size-8 lg:[&_img]:size-[38px]
+                   [&_strong]:block [&_strong]:text-[8px] [&_strong]:font-medium md:[&_strong]:text-[10px] lg:[&_strong]:text-xs
+                   [&_small]:block [&_small]:text-[7px] [&_small]:text-muted md:[&_small]:text-[9px]"
+          >
+            <h2 class="text-[10px] font-medium md:text-sm lg:text-base">Users</h2>
+            <ul class="mt-3 space-y-2 md:mt-4 md:space-y-3">
+              <li class="flex items-center gap-2.5">
+                <img src="assets/avatar-michelle.png" alt="" />
+                <div><strong>Michel</strong><small>Simplify</small></div>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <img src="assets/avatar-clark.png" alt="" />
+                <div><strong>Clark</strong><small>Simplify</small></div>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <img src="assets/avatar-gereds.png" alt="" />
+                <div><strong>Gereds</strong><small>Simplify</small></div>
+              </li>
+            </ul>
+            <button
+              type="button"
+              class="mt-3 h-6 w-full rounded-md bg-mint text-[8px] font-medium text-white md:mt-4 md:h-8 md:text-[10px]"
+            >
+              Message
+            </button>
+          </div>
+
+          <!-- yellow chat bubble -->
+          <div
+            aria-hidden="true"
+            class="absolute top-[194px] left-[78px] z-20 grid size-10 place-items-center rounded-[40%_60%_50%_50%] bg-[#ffda66]
+                   md:top-[300px] md:left-[40px] md:size-14
+                   lg:top-[330px] lg:left-[48px] lg:size-16"
+          >
+            <svg class="size-5 text-white md:size-6" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H12l-4.5 4v-4h-1A2.5 2.5 0 0 1 4 13.5v-8Z"
+                stroke="currentColor"
+                stroke-width="1.7"
+              />
+              <path d="M8 8h8M8 11h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ======================================================
+         2. SERVICES  (Im)
+         ====================================================== -->
+    <section
+      id="services"
+      aria-labelledby="services-title"
+      class="relative min-h-[1341px] bg-white pt-12 pb-20 md:min-h-[626px]"
+    >
+      <!-- dotted decoration (desktop only) -->
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute top-[210px] right-0 hidden h-[170px] w-[90px] bg-[radial-gradient(#dce7fb_1.5px,transparent_1.5px)] bg-size-[14px_14px] bg-position-[-5px_-5px] lg:block"
+      ></div>
+
+      <div class="wrap relative">
+        <h2
+          id="services-title"
+          class="max-w-[360px] text-4xl leading-[43px] font-medium
+                 md:text-[40px] md:leading-[1.2] md:font-semibold"
+        >
+          Lets Check Our<br />
+          Services
+          <span aria-hidden="true" class="inline-block h-[3px] w-9 bg-brand align-middle md:w-14"></span>
+        </h2>
+
+        <!-- 4 service cards: styles for children are set here once -->
+        <div
+          class="mt-[38px] grid grid-cols-1 gap-2
+                 md:mt-8 md:grid-cols-2 md:gap-5
+                 lg:grid-cols-4 lg:gap-0
+                 *:min-h-[296px] *:max-w-[285px] *:rounded-xl *:p-8 md:*:min-h-[250px] md:*:max-w-none lg:*:p-7
+                 [&_.icon]:grid [&_.icon]:size-20 md:[&_.icon]:size-14 [&_.icon]:place-items-center [&_.icon]:rounded-[40%_60%_55%_45%]
+                 [&_svg]:size-6
+                 [&_h3]:mt-7 [&_h3]:text-xl [&_h3]:leading-6 [&_h3]:font-medium
+                 [&_p]:mt-3 [&_p]:leading-7 [&_p]:text-muted"
+        >
+          <article class="bg-[#f8f9ff] lg:bg-transparent">
+            <div class="icon bg-[#caefc4] text-[#54c643]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 4v15h15M8 15l4-4 3 2 4-5M16 8h3v3" />
+              </svg>
+            </div>
+            <h3>Increase conversion</h3>
+            <p>It's crafted with the latest of design &amp; coded with all trendy &amp; modern approaches.</p>
+          </article>
+
+          <article>
+            <div class="icon bg-[#f0c4fb] text-[#c84be5]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 5h16v11H9l-5 4V5Zm3 3v2h10V8H7Zm0 4v2h7v-2H7Z" />
+              </svg>
+            </div>
+            <h3>Discussion for idea</h3>
+            <p>It's crafted with the latest of design &amp; coded with all trendy &amp; modern approaches.</p>
+          </article>
+
+          <article class="lg:bg-[#f8f9ff]">
+            <div class="icon bg-[#c4d5ff] text-[#4580ef]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11 3a9 9 0 1 0 9 9h-9V3Zm3 .5V9h5.5A9 9 0 0 0 14 3.5Z" />
+              </svg>
+            </div>
+            <h3>Product analytics</h3>
+            <p>It's crafted with the latest of design &amp; coded with all trendy &amp; modern approaches.</p>
+          </article>
+
+          <article>
+            <div class="icon bg-[#ffe38a] text-[#e2a900]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 3h6v2h-1v5l5 8a2 2 0 0 1-1.7 3H6.7A2 2 0 0 1 5 18l5-8V5H9V3Zm1.8 9-3.5 6h9.4l-3.5-6h-2.4Z" />
+              </svg>
+            </div>
+            <h3>Perfect testing</h3>
+            <p>It's crafted with the latest of design &amp; coded with all trendy &amp; modern approaches.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         3. TAKE YOUR HAND  (kao)
+         Mobile: text first, image below. Desktop: image left, text right.
+         The slanted light background is drawn with before: + clip-path.
+         ====================================================== -->
+    <section
+      aria-labelledby="work-heading"
+      class="relative isolate mx-auto grid min-h-[680px] w-full grid-cols-1 items-center gap-8 px-4 pt-[146px] pb-[118px] text-[#111052]
+             before:absolute before:top-0 before:bottom-[60px] before:inset-x-0 before:-z-10 before:bg-[#f5f7fc] before:content-['']
+             before:[clip-path:polygon(0_0,100%_11%,100%_100%,0_86%)]
+             lg:mt-[88px] lg:mb-[27px] lg:ml-[clamp(24px,11.5vw,166px)] lg:min-h-[856px] lg:w-auto
+             lg:grid-cols-[minmax(320px,444px)_minmax(0,570px)] lg:items-start lg:gap-[clamp(40px,6.6vw,95px)]
+             lg:pt-0.5 lg:pr-[clamp(24px,11.5vw,165px)] lg:pb-0 lg:pl-0
+             lg:before:bottom-0 lg:before:[clip-path:polygon(0_17.6%,100%_0,100%_78.7%,0_100%)]"
+    >
+      <!-- image + "Daily Order" card -->
+      <div class="relative order-last ml-5 w-[calc(100%-20px)] self-center lg:order-none lg:ml-0 lg:w-auto lg:self-start">
+        <img
+          class="block h-[min(78vw,380px)] w-full rounded-lg object-cover object-center lg:h-[569px] lg:rounded-[10px]"
+          src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+          alt="ทีมงานกำลังประชุมและทำงานร่วมกันรอบโต๊ะ"
+        />
+
+        <div
+          aria-label="ยอดคำสั่งซื้อ 200 รายการ"
+          class="absolute top-[54%] left-[-28px] w-28 rounded-lg bg-white px-3.5 py-[14px] shadow-[0_12px_30px_rgba(65,47,173,0.28)]
+                 lg:top-[58%] lg:left-[-68px] lg:w-[155px] lg:rounded-[10px] lg:px-[18px] lg:pt-[18px] lg:pb-[22px]"
+        >
+          <div class="mb-2 flex items-center gap-[7px] whitespace-nowrap text-[11px] text-[#9291b6] lg:mb-4 lg:gap-1.5 lg:text-sm">
+            <span aria-hidden="true" class="grid size-6 place-items-center rounded-md bg-[#fff3cf] text-[13px] text-[#ffba26] lg:size-[30px] lg:rounded-[7.5px]">▣</span>
+            <span>Daily Order</span>
+          </div>
+
+          <strong class="block text-[27px] leading-[1.15] text-[#29365c] lg:text-[32px] lg:leading-7 lg:font-medium">200</strong>
+
+          <!-- small bar chart -->
+          <div aria-hidden="true" class="mt-1.5 flex h-[27px] items-end gap-1 lg:mt-3 lg:h-[42px] lg:*:w-[5px] lg:[&>i:last-child]:h-[42px]">
+            <i class="h-[6px] w-1 bg-[#ffd84d]"></i>
+            <i class="h-[10px] w-1 bg-[#ffd84d]"></i>
+            <i class="h-2 w-1 bg-[#ffd84d]"></i>
+            <i class="h-[15px] w-1 bg-[#ffd84d]"></i>
+            <i class="h-5 w-1 bg-[#ffd84d]"></i>
+            <i class="h-[27px] w-1 bg-[#ffd84d]"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- text -->
+      <div class="max-w-[470px] lg:max-w-[570px] lg:pt-[clamp(80px,14vw,201px)]">
+        <h2
+          id="work-heading"
+          class="mb-8 text-4xl font-medium leading-[43px]
+                 lg:mb-10 lg:text-[clamp(36px,3.33vw,48px)] lg:leading-[1.185]"
+        >
+          We Take The Work<br />Of Your Hand
+          <span aria-hidden="true" class="mb-1 ml-1.5 inline-block h-[5px] w-9 rounded-full bg-[#1677f9] align-baseline lg:w-[68px]"></span>
+        </h2>
+
+        <p class="mb-6 text-sm leading-6 text-[#8989b4] lg:text-lg lg:leading-[30px]">
+          It's crafted with the latest trend of design &amp; coded with all modern
+          approaches. It's a robust &amp; multi-dimensional usable. Nostrum placeat
+          hic, praesent atque ornare minim.
+        </p>
+        <p class="mb-6 text-sm leading-6 text-[#8989b4] lg:text-lg lg:leading-[30px]">
+          nihil suscipit aliquet excepteur bibendum cumque facilis senectus
+          habitant aliquid cupidatat! Fugit? Nisl dignissimos ratione
+        </p>
+
+        <a
+          href="#discover"
+          class="mt-2 inline-grid h-[60px] w-40 place-items-center rounded-[5px] bg-[#1677f9] text-base font-medium text-white no-underline transition-colors duration-150 hover:bg-[#075fd6] focus-visible:bg-[#075fd6]"
+        >Discover More</a>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         4. PRICE PLAN  (win)
+         Table cell styles = win-* utilities in <style> above.
+         Mobile: table scrolls sideways. Desktop: full width.
+         ====================================================== -->
+    <section class="w-full bg-white px-4 pt-[50px] pb-[61px] font-rubik desktop:px-0 desktop:pt-[135px] desktop:pb-[78px]">
+      <div class="mx-auto w-full desktop:max-w-content">
+        <!-- title -->
+        <div class="mb-16 text-center desktop:mb-[84px]">
+          <p class="mb-[14px] text-xl text-muted desktop:mb-2.5 desktop:text-2xl">Price Plan</p>
+          <h2
+            class="mx-auto max-w-[300px] text-4xl leading-[43px] font-medium text-navy
+                   desktop:max-w-none desktop:text-5xl desktop:leading-[57px]"
+          >
+            No Extra Charges! Choose<br />Your Plan.
+          </h2>
+        </div>
+
+        <!-- table -->
+        <div class="-mr-4 overflow-x-auto desktop:mr-0">
+          <table class="w-full min-w-[430px] border-collapse desktop:min-w-0">
+            <thead>
+              <tr>
+                <th class="win-cell w-[121px] desktop:w-[285px]"></th>
+                <th class="win-plan w-[103px] desktop:w-[275px]">
+                  <span class="win-price text-regular">$2000</span>
+                  <span class="win-name">Regular</span>
+                </th>
+                <th class="win-plan w-[103px] desktop:w-[275px]">
+                  <span class="win-price text-premium">$3000</span>
+                  <span class="win-name">Premium</span>
+                </th>
+                <th class="win-plan w-[103px] desktop:w-[275px]">
+                  <span class="win-price text-corporate">$5000</span>
+                  <span class="win-name">Corporate</span>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="win-label">Full Access</td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-check">&#10003;</span></td>
+              </tr>
+              <tr>
+                <td class="win-label">Multiple User</td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-check">&#10003;</span></td>
+              </tr>
+              <tr>
+                <td class="win-label">Refund</td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-cross">&times;</span></td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-check">&#10003;</span></td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-check">&#10003;</span></td>
+              </tr>
+              <tr>
+                <td class="win-label">24/7 Support</td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-check">&#10003;</span></td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-check">&#10003;</span></td>
+                <td class="win-cell py-2.5 desktop:py-6"><span class="win-icon win-check">&#10003;</span></td>
+              </tr>
+
+              <!-- buttons row (no borders on mobile) -->
+              <tr>
+                <td class="desktop:win-cell"></td>
+                <td class="win-cta">
+                  <a href="#" class="win-btn bg-regular">Choose Plan</a>
+                  <p class="win-trial">Get your 30 days free trial</p>
+                </td>
+                <td class="win-cta">
+                  <a href="#" class="win-btn bg-premium">Choose Plan</a>
+                  <p class="win-trial">Get your 30 days free trial</p>
+                </td>
+                <td class="win-cta">
+                  <a href="#" class="win-btn bg-corporate">Choose Plan</a>
+                  <p class="win-trial">Get your 30 days free trial</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         5. TESTIMONIAL  (nueng)
+         Mobile: photo on top, text below. Desktop: side by side.
+         ====================================================== -->
+    <section
+      class="font-rubik px-4 pt-[74px] pb-[85px]
+             lg:px-0 lg:pt-[146px] lg:pb-[199px]"
+    >
+      <div
+        class="max-w-[1110px] mx-auto flex flex-col items-center gap-5
+               lg:flex-row lg:items-start lg:gap-[126px]"
+      >
+        <!-- photo + like badge -->
+        <div class="relative w-[308px] shrink-0 lg:w-[349px]">
+          <img src="images/testimonial.png" alt="Jack Smith" class="w-full" />
+
+          <div
+            class="absolute -left-[22px] top-[234px] w-[76px] h-[76px] rounded-[10px] bg-badge flex items-center justify-center
+                   lg:-left-[35px] lg:top-[284px]"
+          >
+            <img src="images/icons/like.svg" alt="" class="w-10 h-10" />
+          </div>
+        </div>
+
+        <!-- review text -->
+        <div class="w-full max-w-[602px] lg:mt-[98px]">
+          <img src="images/icons/quote.svg" alt="" class="w-11 h-11 lg:w-[59px] lg:h-[59px]" />
+
+          <p
+            class="mt-[18px] text-base leading-6 italic text-muted
+                   lg:mt-8 lg:text-2xl lg:leading-10"
+          >
+            It’s awesome service. Land from day very fill that midst stars one dominion.
+            Itself was let that divided itself god don't subdue wherein let behold over
+            he whose of sea moved called.
+          </p>
+
+          <h4
+            class="mt-[19px] text-center text-xl leading-9 font-bold text-gold
+                   lg:mt-[35px] lg:text-left lg:text-2xl lg:leading-10"
+          >
+            Jack Smith
+          </h4>
+          <p class="text-center text-sm leading-7 text-muted lg:text-left lg:text-base">CEO of DIANO</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         6. NEWSLETTER  (nueng)
+         ====================================================== -->
+    <section class="font-rubik">
+      <div
+        class="max-w-[1110px] mx-auto px-4 pt-[30px] pb-[46px] bg-light text-center
+               lg:px-0 lg:pt-14 lg:pb-[69px] lg:rounded-[15px]"
+      >
+        <h2 class="text-4xl leading-[43px] font-medium text-navy lg:leading-normal">Sign up to our newsletter</h2>
+
+        <p
+          class="max-w-[290px] mx-auto mt-4 text-base leading-[30px] text-muted
+                 lg:max-w-[450px] lg:mt-[15px] lg:text-xl"
+        >
+          Recive latest news, updates and many other news every week.
+        </p>
+
+        <!-- email box -->
+        <form action="#" class="relative w-full max-w-[319px] h-[67px] mx-auto mt-6 lg:max-w-[480px] lg:mt-[39px]">
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            class="w-full h-full pl-[25px] pr-[70px] rounded-full bg-white text-navy placeholder:text-navy/20 outline-none lg:pl-[35px]"
+          />
+          <button
+            type="submit"
+            class="absolute right-[10px] top-1/2 -translate-y-1/2 w-[46px] h-[46px] rounded-full bg-primary flex items-center justify-center hover:bg-primary-dark
+                   lg:right-4"
+          >
+            <img src="images/icons/arrow-right.svg" alt="Subscribe" class="w-7 h-7" />
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         7. FOOTER  (nueng)
+         Mobile: Features / About / Resources fold open/closed (<details>).
+         Desktop: 4 columns, menus always open (see script at the bottom).
+         Styles for <summary>, <details> and .chev are set once on <footer>.
+         ====================================================== -->
+    <footer
+      class="font-rubik px-4 pt-[46px] pb-[25px]
+             lg:px-0 lg:pt-28 lg:pb-[34px]
+             [&_summary]:flex [&_summary]:items-center [&_summary]:justify-between [&_summary]:list-none [&_summary::-webkit-details-marker]:hidden
+             lg:[&_summary]:pointer-events-none
+             [&_details]:-mx-4 [&_details]:px-4 [&_details]:py-6 [&_details]:border-b [&_details]:border-muted/20
+             lg:[&_details]:mx-0 lg:[&_details]:px-0 lg:[&_details]:py-0 lg:[&_details]:border-0
+             [&_.chev]:mr-4 [&_.chev]:size-6 [&_.chev]:transition-transform [&_details[open]_.chev]:rotate-180
+             lg:[&_.chev]:hidden"
+    >
+      <div class="max-w-[1110px] mx-auto grid grid-cols-1 lg:grid-cols-[447px_221px_194px_248px]">
+        <!-- column 1: logo, text, social -->
+        <div class="mb-[30px] lg:mb-0">
+          <a href="#" class="flex items-center gap-3">
+            <img src="images/icons/logo.svg" alt="" class="w-[53px] h-[46px] lg:w-10 lg:h-[31px]" />
+            <span class="text-[40px] font-medium text-navy lg:text-2xl">Agencio</span>
+          </a>
+
+          <p class="max-w-[350px] mt-4 text-sm leading-[30px] text-muted lg:mt-5 lg:text-base">
+            Winged moving moveth created for shall and a divide the their days male midst
+            shall hath doesn't won't for. Midst life.Over a great night.
+          </p>
+
+          <div class="flex gap-[13px] mt-10 lg:mt-[15px]">
+            <a href="#" class="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
+              <img src="images/icons/facebook.svg" alt="Facebook" class="w-4 h-4" />
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
+              <img src="images/icons/twitter.svg" alt="Twitter" class="w-4 h-5" />
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
+              <img src="images/icons/linkedin.svg" alt="LinkedIn" class="w-4 h-4" />
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
+              <img src="images/icons/youtube.svg" alt="YouTube" class="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        <!-- column 2: Features -->
+        <details>
+          <summary>
+            <h4 class="text-xl font-medium text-navy">Features</h4>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 10h12l-6 6z" fill="#0b0757" /></svg>
+          </summary>
+          <ul class="mt-4 space-y-[5px] leading-[30px] text-muted lg:mt-8">
+            <li><a href="#">Analytic</a></li>
+            <li><a href="#">Activity</a></li>
+            <li><a href="#">Influencer</a></li>
+            <li><a href="#">Publishing</a></li>
+          </ul>
+        </details>
+
+        <!-- column 3: About -->
+        <details>
+          <summary>
+            <h4 class="text-xl font-medium text-navy">About</h4>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 10h12l-6 6z" fill="#0b0757" /></svg>
+          </summary>
+          <ul class="mt-4 space-y-[5px] leading-[30px] text-muted lg:mt-8">
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Company</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </details>
+
+        <!-- column 4: Resources -->
+        <details>
+          <summary>
+            <h4 class="text-xl font-medium text-navy">Resources</h4>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 10h12l-6 6z" fill="#0b0757" /></svg>
+          </summary>
+          <ul class="mt-4 space-y-[5px] leading-[30px] text-muted lg:mt-8">
+            <li><a href="#">Application Security</a></li>
+            <li><a href="#">Software Policy</a></li>
+            <li><a href="#">Supply Chain</a></li>
+            <li><a href="#">Manage Reputation</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- copyright (mobile shows the short version) -->
+      <p
+        class="max-w-[1110px] mx-auto mt-[30px] text-center text-lg text-muted
+               lg:mt-[63px] lg:pt-[31px] lg:border-t lg:border-muted/20 lg:text-base lg:text-navy/20"
+      >
+        Copyright ©2020 Agencio<span class="hidden lg:inline">. All Rights Reserved</span>
+      </p>
+    </footer>
+
+    <!-- Footer menus: always open on desktop (1024px+), fold open/closed on mobile -->
+    <script>
+      const desktop = matchMedia("(min-width: 1024px)");
+      const syncFooter = () =>
+        document.querySelectorAll("footer details").forEach((d) => (d.open = desktop.matches));
+      desktop.addEventListener("change", syncFooter);
+      syncFooter();
+    </script>
+  </body>
 </html>
